@@ -1,19 +1,22 @@
 [core]
-	autocrlf = false
+  autocrlf = false
 
 [alias]
-	co = checkout
-	st = status -s
-	glog = log --graph --decorate --date=short --pretty=format:'%C(yellow)%h %Cred%ad %C(yellow)%an%Cgreen%d%Creset %s'
-	gslog = log --stat=200 --graph --decorate --date=short --pretty=format:'%C(yellow)%h %Cred%ad %C(yellow)%an%Cgreen%d%Creset %s'
-	cm = !git add -A && git commit -m
-	sc = !git add -A && git commit -m '-'
-	ba = branch -a
-	pullall = !git pull --rebase && git submodule update --init --recursive
+  co = checkout
+  st = status -s
+  glog = log --graph --decorate --date=short --pretty=format:'%C(yellow)%h %Cred%ad %C(yellow)%an%Cgreen%d%Creset %s'
+  gslog = log --stat=200 --graph --decorate --date=short --pretty=format:'%C(yellow)%h %Cred%ad %C(yellow)%an%Cgreen%d%Creset %s'
+  cm = !git add -A && git commit -m
+  sc = !git add -A && git commit -m '-'
+  ba = branch -a
+  pullall = !git pull --rebase && git submodule update --init --recursive
 
 [mergetool]
-	keepBackup = false
+  keepBackup = false
 
 [push]
-	default = simple
+  default = simple
+
+[include]
+  path = .gitconfig.local
 
