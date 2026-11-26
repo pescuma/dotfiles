@@ -1,0 +1,129 @@
+set autoindent
+set ignorecase
+set smartcase
+set visualbell
+set hls
+set incsearch
+set surround
+
+
+inoremap jk <esc>
+noremap H _
+noremap L $
+noremap Q @q
+
+nmap <C-s> :wa<CR>
+imap <C-s> <Esc>:wa<CR>a
+vmap <C-s> <Esc>:wa<CR>gv
+
+map <C-o> <Action>(Back)
+map <C-i> <Action>(Forward)
+
+map <C-w>h <Action>(HideAllWindows)
+
+" Refactors
+nmap crr <Action>(RenameElement)
+nmap cro <Action>(Move)
+nmap crd <Action>(SafeDelete)
+nmap crm <Action>(ExtractMethod)
+vmap crm <Action>(ExtractMethod)
+nmap crv <Action>(IntroduceVariable)
+vmap crv <Action>(IntroduceVariable)
+nmap crf <Action>(IntroduceField)
+nmap crp <Action>(IntroduceParameter)
+nmap cri <Action>(Inline)
+nmap crs <Action>(ChangeSignature)
+nmap crc <Action>(ReformatCode)
+vmap crc <Action>(ReformatCode)
+
+nmap <A-j> <Action>(MoveLineDown)
+nmap <A-k> <Action>(MoveLineUp)
+
+
+" Explore
+nmap gd <Action>(GotoDeclaration)
+"nmap g[ <Action>(GotoContainingDeclaration)
+nmap g] <Action>(GotoDeclaration)
+nmap gi <Action>(ReSharperGotoImplementation)
+nmap gk <Action>(GotoSuperMethod)
+nmap gj <Action>(GotoImplementation)
+nmap gp <Action>(QuickJavaDoc)
+
+nmap gr <Action>(ShowUsages)
+nmap gs <Action>(GotoRelated)
+
+nmap ]q <Action>(NextOccurence)
+nmap [q <Action>(PreviousOccurence)
+nmap ]e <Action>(GotoNextError)
+nmap [e <Action>(GotoPreviousError)
+nmap ]E <Action>(ReSharperGotoNextErrorInSolution)
+nmap [E <Action>(ReSharperGotoPrevErrorInSolution)
+nmap ]h <Action>(GotoNextError)
+nmap [h <Action>(GotoPreviousError)
+nmap ]m <Action>(MethodDown)
+vmap ]m <Action>(MethodDown)
+nmap [m <Action>(MethodUp)
+vmap [m <Action>(MethodUp)
+
+
+nmap ga <Action>(SearchEverywhere)
+nmap gt <Action>(GotoClass)
+nmap gf <Action>(GotoFile)
+"nmap gs <Action>(GotoSymbol)
+nmap gm <Action>(FileStructurePopup)
+
+
+" Build
+if &ide =~? 'intellij idea'
+	map zxb <Action>(CompileDirty)
+	map zxr <Action>(CompileProject)
+else
+	map zxb <Action>(BuildWholeSolutionAction)
+	map zxr <Action>(RebuildSolutionAction)
+endif
+
+" Run
+map zrr <Action>(Run)
+"nmap zra :vsc Debug.ReAttach<CR>
+
+" Debug
+map zdr <Action>(Debug)
+map zdb <Action>(ToggleLineBreakpoint)
+map zdv <Action>(ViewBreakpoints)
+map <A-j> <Action>(StepOver)
+map <A-S-j> <Action>(RunToCursor)
+" map <A-k> <Action>(ResetFrame)
+map <A-l> <Action>(StepInto)
+map <A-h> <Action>(StepOut)
+map <C-j> <Action>(Resume)
+map zdc <Action>(Resume)
+map zds <Action>(Stop)
+
+" Tests
+if &ide =~? 'intellij idea'
+    nmap zur <Action>(RunClass)
+    nmap zud <Action>(DebugClass)
+    "nmap zut <Action>(RiderUnitTestRunCurrentSessionAction)
+    "nmap zuT <Action>(ReSharper.ReSharper_UnitTestRunCurrentSession)
+    " Too dangerous nmap zua :vsc ReSharper.ReSharper_UnitTestRunSolution<CR>
+    nmap zuu <Action>(Rerun)
+else
+    nmap zur <Action>(RiderUnitTestRunContextAction)
+    nmap zud <Action>(RiderUnitTestDebugContextAction)
+    nmap zut <Action>(RiderUnitTestRunCurrentSessionAction)
+    "nmap zuT <Action>(ReSharper.ReSharper_UnitTestRunCurrentSession)
+    " Too dangerous nmap zua :vsc ReSharper.ReSharper_UnitTestRunSolution<CR>
+    nmap zuu <Action>(RiderUnitTestRepeatPreviousRunAction)
+endif
+
+
+" Code
+nnoremap <silent> ]<Space> :set paste<CR>mmo<Esc>`m:set nopaste<CR>
+nnoremap <silent> [<Space> :set paste<CR>mmO<Esc>`m:set nopaste<CR>
+
+nmap Cc <Action>(CommentByLineComment)
+vmap Cc <Action>(CommentByLineComment)
+"vmap Cm <Action>(CommentByBlockComment)
+"vmap Ci <Action>(CommentByLineComment)
+vmap Cu <Action>(CommentByLineComment)
+vmap Cu <Action>(CommentByLineComment)
